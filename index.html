@@ -5,13 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./src/output.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>Sopro</title>
   </head>
   <body>
     <div class="w-10/12 mx-auto">
-      <header class="fixed w-10/12 left-0 right-0 mx-auto">
+      <header
+        class="fixed w-10/12 left-0 right-0 mx-auto z-50 backdrop-blur-xl bg-white bg-opacity-70 px-5 rounded-full top-2"
+      >
         <nav>
-          <ul class="flex justify-between py-5 items-center">
+          <ul class="flex justify-between py-4 items-center">
             <li class="flex gap-4 items-center">
               <img
                 class="size-8"
@@ -33,32 +42,35 @@
                 <a href="#">Explore</a>
               </li>
             </div>
-            <div class="flex gap-3 items-center">
+            <div class="md:flex hidden gap-3 items-center">
               <li>
                 <button
-                  class="py-2 px-5 bg-white border-2 border-black rounded-md"
+                  class="py-1 px-5 bg-white border-2 border-black rounded-md"
                 >
-                  <a href="#">Get-started</a>
+                  <a href="#content">Get-started</a>
                 </button>
               </li>
               <li>
-                <button class="py-2 px-5 bg-black text-white rounded-md">
+                <button class="py-1 px-5 bg-black text-white rounded-md">
                   <a href="#">New Project</a>
                 </button>
               </li>
             </div>
+            <li class="md:hidden block mr-5">
+              <i class="fa-solid fa-bars"></i>
+            </li>
           </ul>
         </nav>
       </header>
 
-      <main>
-        <div class="h-screen grid place-content-center">
+      <main class="relative z-10">
+        <div class="min-h-screen grid place-content-center relative">
           <article class="flex flex-col items-center text-center gap-8 mx-auto">
             <h1 class="font-medium text-6xl main-title">
               Travailler plus intelligemment
             </h1>
             <p class="w-2/3 font-light text-gray-600 text-xl">
-              Avec Asana, maintenez une vue claire des objectifs et maximisez
+              Avec Sopro, maintenez une vue claire des objectifs et maximisez
               l’impact de votre travail à grande échelle en reliant vos tâches
               et les processus aux objectifs de l’entreprise.
             </p>
@@ -66,7 +78,7 @@
               <button
                 class="py-2 px-5 bg-white border-2 border-black rounded-md"
               >
-                <a href="#">Get-started</a>
+                <a href="#content">Get-started</a>
               </button>
 
               <button class="py-2 px-5 bg-black text-white rounded-md">
@@ -75,7 +87,239 @@
             </div>
           </article>
         </div>
+        <div class="min-h-screen relative">
+          <nav id="content">
+            <ul class="flex gap-4 font-normal text-base navtab">
+              <li class="active">My Projects</li>
+              <li>Latest</li>
+              <li>Older</li>
+            </ul>
+          </nav>
+          <div
+            class="projects mt-10 grid grid-cols-1 md:grid-cols-3 md:gap-x-5 gap-y-11"
+          >
+            <!-- First_project -->
+
+            <div
+              class="bg-white rounded-lg relative shadow-lg overflow-hidden flex flex-col h-auto"
+            >
+              <img
+                src="./assets/images/IMG_1448.JPG"
+                alt="Sport Image"
+                class="w-full image-card object-cover"
+              />
+              <div class="absolute top-5 left-5">
+                <div
+                  class="bg-purple-700 flex gap-2 items-center justify-center backdrop-blur-sm bg-opacity-70 rounded-full w-24 text-white text-sm font-light"
+                >
+                  <i class="fa-solid fa-spinner"></i>
+                  <p>Status</p>
+                </div>
+              </div>
+
+              <div class="p-6 flex flex-col flex-grow">
+                <div class="flex justify-between items-center">
+                  <h2 class="card-title text-black font-semibold text-2xl">
+                    Project Name
+                  </h2>
+                  <p class="font-normal text-xl">Tasks : 54</p>
+                </div>
+
+                <p class="text-gray-500 mt-2">
+                  Lorem ipsum dolor sit amet, consect adipiscing elit, sed do
+                  eiusmod tempor incididunt ut labore et dolore incididunt ut
+                  labore et dolore.
+                </p>
+                <div class="mt-auto pt-7 flex justify-between items-center">
+                  <div>
+                    <p class="font-bold">Start Date</p>
+                    <p>
+                      <span class="size-5 font-normal text-1xl">4/12/2018</span>
+                    </p>
+                  </div>
+                  <div>
+                    <p class="font-bold">End Date</p>
+                    <p>
+                      <span class="size-5 font-normal text-1xl">4/12/2018</span>
+                    </p>
+                  </div>
+                  <button
+                    class="py-2 px-7 bg-gradient-to-r from-purple-500 to-purple-700 text-white rounded-xl"
+                  >
+                    <a href="./DetailsPage.html"> More Details </a>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- First_project -->
+
+            <div
+              class="bg-white rounded-lg relative shadow-lg overflow-hidden flex flex-col h-auto"
+            >
+              <img
+                src="./assets/images/IMG_1448.JPG"
+                alt="Sport Image"
+                class="w-full image-card object-cover"
+              />
+              <div class="absolute top-5 left-5">
+                <div
+                  class="bg-purple-700 flex gap-2 items-center justify-center backdrop-blur-sm bg-opacity-70 rounded-full w-24 text-white text-sm font-light"
+                >
+                  <i class="fa-solid fa-spinner"></i>
+                  <p>Status</p>
+                </div>
+              </div>
+
+              <div class="p-6 flex flex-col flex-grow">
+                <div class="flex justify-between items-center">
+                  <h2 class="card-title text-black font-semibold text-2xl">
+                    Project Name
+                  </h2>
+                  <p class="font-normal text-xl">Tasks : 54</p>
+                </div>
+
+                <p class="text-gray-500 mt-2">
+                  Lorem ipsum dolor sit amet, consect adipiscing elit, sed do
+                  eiusmod tempor incididunt ut labore et dolore incididunt ut
+                  labore et dolore.
+                </p>
+                <div class="mt-auto pt-7 flex justify-between items-center">
+                  <div>
+                    <p class="font-bold">Start Date</p>
+                    <p>
+                      <span class="size-5 font-normal text-1xl">4/12/2018</span>
+                    </p>
+                  </div>
+                  <div>
+                    <p class="font-bold">End Date</p>
+                    <p>
+                      <span class="size-5 font-normal text-1xl">4/12/2018</span>
+                    </p>
+                  </div>
+                  <button
+                    class="py-2 px-7 bg-gradient-to-r from-purple-500 to-purple-700 text-white rounded-xl"
+                  >
+                    <a href="./DetailsPage.html"> More Details </a>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- First_project -->
+
+            <div
+              class="bg-white rounded-lg relative shadow-lg overflow-hidden flex flex-col h-auto"
+            >
+              <img
+                src="./assets/images/IMG_1448.JPG"
+                alt="Sport Image"
+                class="w-full image-card object-cover"
+              />
+              <div class="absolute top-5 left-5">
+                <div
+                  class="bg-purple-700 flex gap-2 items-center justify-center backdrop-blur-sm bg-opacity-70 rounded-full w-24 text-white text-sm font-light"
+                >
+                  <i class="fa-solid fa-spinner"></i>
+                  <p>Status</p>
+                </div>
+              </div>
+
+              <div class="p-6 flex flex-col flex-grow">
+                <div class="flex justify-between items-center">
+                  <h2 class="card-title text-black font-semibold text-2xl">
+                    Project Name
+                  </h2>
+                  <p class="font-normal text-xl">Tasks : 54</p>
+                </div>
+
+                <p class="text-gray-500 mt-2">
+                  Lorem ipsum dolor sit amet, consect adipiscing elit, sed do
+                  eiusmod tempor incididunt ut labore et dolore incididunt ut
+                  labore et dolore.
+                </p>
+                <div class="mt-auto pt-7 flex justify-between items-center">
+                  <div>
+                    <p class="font-bold">Start Date</p>
+                    <p>
+                      <span class="size-5 font-normal text-1xl">4/12/2018</span>
+                    </p>
+                  </div>
+                  <div>
+                    <p class="font-bold">End Date</p>
+                    <p>
+                      <span class="size-5 font-normal text-1xl">4/12/2018</span>
+                    </p>
+                  </div>
+                  <button
+                    class="py-2 px-7 bg-gradient-to-r from-purple-500 to-purple-700 text-white rounded-xl"
+                  >
+                    <a href="./DetailsPage.html"> More Details </a>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- First_project -->
+
+            <div
+              class="bg-white rounded-lg relative shadow-lg overflow-hidden flex flex-col h-auto"
+            >
+              <img
+                src="./assets/images/IMG_1448.JPG"
+                alt="Sport Image"
+                class="w-full image-card object-cover"
+              />
+              <div class="absolute top-5 left-5">
+                <div
+                  class="bg-purple-700 flex gap-2 items-center justify-center backdrop-blur-sm bg-opacity-70 rounded-full w-24 text-white text-sm font-light"
+                >
+                  <i class="fa-solid fa-spinner"></i>
+                  <p>Status</p>
+                </div>
+              </div>
+
+              <div class="p-6 flex flex-col flex-grow">
+                <div class="flex justify-between items-center">
+                  <h2 class="card-title text-black font-semibold text-2xl">
+                    Project Name
+                  </h2>
+                  <p class="font-normal text-xl">Tasks : 54</p>
+                </div>
+
+                <p class="text-gray-500 mt-2">
+                  Lorem ipsum dolor sit amet, consect adipiscing elit, sed do
+                  eiusmod tempor incididunt ut labore et dolore incididunt ut
+                  labore et dolore.
+                </p>
+                <div class="mt-auto pt-7 flex justify-between items-center">
+                  <div>
+                    <p class="font-bold">Start Date</p>
+                    <p>
+                      <span class="size-5 font-normal text-1xl">4/12/2018</span>
+                    </p>
+                  </div>
+                  <div>
+                    <p class="font-bold">End Date</p>
+                    <p>
+                      <span class="size-5 font-normal text-1xl">4/12/2018</span>
+                    </p>
+                  </div>
+                  <button
+                    class="py-2 px-7 bg-gradient-to-r from-purple-500 to-purple-700 text-white rounded-xl"
+                  >
+                    <a href="./DetailsPage.html"> More Details </a>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="w-full flex items-center justify-center mt-10">
+            <button>
+              <i class="fa-solid fa-angles-down fa-2x bounce"></i>
+            </button>
+          </div>
+        </div>
       </main>
+      <footer class=""></footer>
     </div>
+    <script src="./assets/js/main.js"></script>
   </body>
 </html>

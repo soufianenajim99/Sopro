@@ -22,16 +22,16 @@ ul li {
   font-size: 16px;
   font-weight: 500;
   text-decoration: underline;
-  text-underline-offset: 4px;
+  text-underline-offset: 8px;
 }
 
 footer {
-  height: 30dvh;
+  min-height: 30dvh;
   position: absolute;
   width: 100vw;
   margin-top: 140px;
   right: 0%;
-  background-color: azure;
+  background-color: rgb(255, 255, 255);
 }
 
 @keyframes bounce {
@@ -51,5 +51,9 @@ footer {
 }
 
 .bounce {
-  animation: bounce 2s infinite;
+  animation: bounce 1s infinite;
+}
+
+.details-image {
+  width: 50%;
 }

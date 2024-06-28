@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./src/output.css" />
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../src/output.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -15,6 +15,7 @@
     <title>Sopro</title>
   </head>
   <body>
+    <!-- Create-project-form -->
     <div
       class="fixed w-screen h-screen backdrop-blur-md z-50 grid place-content-center layer-form hidden"
     >
@@ -119,16 +120,118 @@
         </form>
       </div>
     </div>
+
+    <!-- Edite-project-form -->
+    <div
+      class="fixed w-screen h-screen backdrop-blur-md z-50 grid place-content-center layer-form-edit hidden"
+    >
+      <div
+        class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg text-center"
+      >
+        <h2 class="text-2xl font-bold mb-6">Modifiez le Project</h2>
+        <form
+          class="form-edit"
+          action="#"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <div class="mb-4">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2"
+              for="edit-image"
+              >Project Image</label
+            >
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="edit-image"
+              type="file"
+              name="image"
+            />
+          </div>
+          <div class="mb-4">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2"
+              for="edit-name"
+              >Nom du Projet</label
+            >
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="edit-name"
+              type="text"
+              name="name"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2"
+              for="edit-description"
+              >Description</label
+            >
+            <textarea
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="edit-description"
+              name="description"
+              rows="4"
+              required
+            ></textarea>
+          </div>
+          <div class="mb-4">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2"
+              for="edit-start-date"
+              >Date de début</label
+            >
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="edit-start-date"
+              type="date"
+              name="start_date"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2"
+              for="edit-end-date"
+              >Date de fin</label
+            >
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="edit-end-date"
+              type="date"
+              name="end_date"
+              required
+            />
+          </div>
+          <div class="flex items-center justify-between">
+            <button
+              class="py-1 px-5 bg-white border-2 border-black rounded-md"
+              type="submit"
+            >
+              Submit
+            </button>
+            <button
+              class="py-1 px-5 bg-black text-white rounded-md"
+              type="reset"
+            >
+              Reset
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <div class="w-10/12 mx-auto">
       <header
-        class="fixed w-10/12 left-0 right-0 mx-auto z-40 backdrop-blur-xl bg-white bg-opacity-70 px-5 rounded-full top-2"
+        class="w-10/12 mt-2 left-0 right-0 mx-auto z-40 backdrop-blur-xl bg-white bg-opacity-70 px-5 rounded-full top-2"
       >
         <nav>
           <ul class="flex justify-between py-4 items-center">
             <li class="flex gap-4 items-center">
               <img
                 class="size-8"
-                src="./assets/images/ac70afe3d5798b9d7cd8ad3b4683047b.png"
+                src="../assets/images/ac70afe3d5798b9d7cd8ad3b4683047b.png"
                 alt=""
                 srcset=""
               /><a href="" class="font-normal text-2xl text-orange-950"
@@ -170,55 +273,16 @@
       </header>
 
       <main class="relative z-10">
-        <div class="min-h-screen grid place-content-center relative">
-          <article class="flex flex-col items-center text-center gap-8 mx-auto">
-            <h1 class="font-medium text-6xl main-title">
-              Travailler plus intelligemment
-            </h1>
-            <p class="w-2/3 font-light text-gray-600 text-xl">
-              Avec Sopro, maintenez une vue claire des objectifs et maximisez
-              l’impact de votre travail à grande échelle en reliant vos tâches
-              et les processus aux objectifs de l’entreprise.
-            </p>
-            <div class="flex gap-3 items-center">
-              <button
-                class="py-2 px-5 bg-white border-2 border-black rounded-md"
-              >
-                <a href="#content">Get-started</a>
-              </button>
-
-              <button
-                class="py-2 px-5 bg-black text-white rounded-md new-project"
-              >
-                New Project
-              </button>
-            </div>
-          </article>
-        </div>
-        <div class="min-h-screen relative">
-          <nav id="content">
-            <ul class="flex gap-4 font-normal text-base navtab">
-              <li class="active">My Projects</li>
-              <li>Latest</li>
-              <li>Older</li>
-            </ul>
-          </nav>
-          <div
-            class="projects mt-10 grid grid-cols-1 md:grid-cols-3 md:gap-x-5 gap-y-11"
-          ></div>
-          <div class="w-full flex items-center justify-center mt-10">
-            <button>
-              <i class="fa-solid fa-angles-down fa-2x bounce"></i>
-            </button>
-          </div>
-        </div>
+        <div
+          class="min-h-screen grid place-content-center relative project-details"
+        ></div>
       </main>
       <footer class="">
         <div class="my-10">
           <div class="flex flex-col gap-5 justify-center w-screen items-center">
             <img
               class="size-10"
-              src="./assets/images/ac70afe3d5798b9d7cd8ad3b4683047b.png"
+              src="../assets/images/ac70afe3d5798b9d7cd8ad3b4683047b.png"
               alt=""
               srcset=""
             />
@@ -246,6 +310,6 @@
         </div>
       </footer>
     </div>
-    <script src="./assets/js/main.js"></script>
+    <script src="../assets/js/Details.js"></script>
   </body>
 </html>

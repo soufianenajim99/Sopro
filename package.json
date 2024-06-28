@@ -3,6 +3,10 @@
     "tailwindcss": "^3.4.4"
   },
   "scripts": {
+    "start": "node server.js",
     "dev": "npx tailwindcss -i ./src/input.css -o ./src/output.css --watch"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
   }
 }

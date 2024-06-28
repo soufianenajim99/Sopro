@@ -3,12 +3,10 @@
 const modal = document.querySelector(".layer-form");
 const form = document.querySelector(".form");
 const Project_button = document.querySelectorAll(".new-project");
+let projects = JSON.parse(localStorage.getItem("projects")) || [];
+
+const projectD = JSON.parse(localStorage.getItem("selectedProject"));
 document.addEventListener("click", function (event) {
-  console.log(!form.contains(event.target));
-  console.log(!modal.classList.contains("hidden"));
-  console.log(
-    !(event.target == Project_button[0] || event.target == Project_button[1])
-  );
   if (!form.contains(event.target) && !modal.classList.contains("hidden")) {
     if (
       !(event.target == Project_button[0] || event.target == Project_button[1])
@@ -33,6 +31,29 @@ class Project {
     this.startDate = startDate;
     this.endDate = endDate;
     this.status = "Incomplet";
+    this.tasks = [];
+  }
+
+  addTask(task) {
+    this.tasks.push(task);
+  }
+  removeTask(taskId) {
+    this.tasks = this.tasks.filter((task) => task.id !== taskId);
+  }
+
+  updateTask(taskId, updatedTask) {
+    this.tasks = this.tasks.map((task) =>
+      task.id === taskId ? updatedTask : task
+    );
+  }
+}
+
+class Task {
+  constructor(id, name, description, status = "Incomplet") {
+    this.id = id;
+    this.name = name;
+    this.description = description;
+    this.status = status;
   }
 }
 
@@ -60,7 +81,6 @@ form.addEventListener("submit", (event) => {
       endDateInput
     );
 
-    let projects = JSON.parse(localStorage.getItem("projects")) || [];
     projects.push(project);
     localStorage.setItem("projects", JSON.stringify(projects));
 
@@ -70,7 +90,14 @@ form.addEventListener("submit", (event) => {
 });
 
 const projectDetails = document.querySelector(".project-details");
-const projectD = JSON.parse(localStorage.getItem("selectedProject"));
+
+const updateLocalStorage = () => {
+  localStorage.setItem("selectedProject", JSON.stringify(projectD));
+  const updatedProjects = projects.map((project) =>
+    project.id === projectD.id ? projectD : project
+  );
+  localStorage.setItem("projects", JSON.stringify(updatedProjects));
+};
 
 if (projectD) {
   projectDetails.innerHTML = `
@@ -129,17 +156,29 @@ if (projectD) {
       ${projectD.tasks.map(
         (task) => `
         <tr>
-          <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">${task.name}</td>
-          <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">${task.description}</td>
-          <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">${task.status}</td>
+          <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">${
+            task.name
+          }</td>
+          <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">${
+            task.description
+          }</td>
+          <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">${
+            task.status
+          }</td>
           <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-            <button class="px-4 py-2 bg-green-500 text-white rounded mr-2 mark-task-completed" data-task-id="${task.id}">
+            <button class="px-4 py-2 bg-green-500 text-white rounded mr-2 mark-task-completed" data-task-id="${
+              task.id
+            }"${task.status === "Complete" ? "disabled" : ""}>
               <i class="fa-solid fa-check"></i>
             </button>
-            <button class="px-4 py-2 bg-red-500 text-white rounded mr-2 delete-task" data-task-id="${task.id}">
+            <button class="px-4 py-2 bg-red-500 text-white rounded mr-2 delete-task" data-task-id="${
+              task.id
+            }">
               <i class="fa-solid fa-trash"></i>
             </button>
-            <button class="px-4 py-2 bg-yellow-500 text-white rounded modify-task" data-task-id="${task.id}">
+            <button class="px-4 py-2 bg-yellow-500 text-white rounded modify-task" data-task-id="${
+              task.id
+            }">
               <i class="fa-solid fa-edit"></i>
             </button>
           </td>
@@ -150,7 +189,7 @@ if (projectD) {
   </table>
 </div>
           <div class="w-full flex justify-between mt-32">
-            <button class="px-8 py-2 bg-cyan-400 rounded-full">
+            <button class="px-8 py-2 bg-cyan-400 rounded-full add-task-button">
               Add Tasks
             </button>
             <button class="px-8 py-2 bg-amber-300 rounded-full modifier-button">
@@ -218,9 +257,6 @@ modifierButton.addEventListener("click", () => {
 });
 
 document.addEventListener("click", function (event) {
-  console.log(!editForm.contains(event.target));
-  console.log(!formEditLayer.classList.contains("hidden"));
-  console.log(!(event.target == modifierButton));
   if (
     !editForm.contains(event.target) &&
     !formEditLayer.classList.contains("hidden")
@@ -267,4 +303,82 @@ editForm.addEventListener("submit", (event) => {
     formEditLayer.classList.add("hidden");
     window.location.reload();
   }
+});
+
+const taskForm = document.querySelector(".task-form");
+const layerTask = document.querySelector(".layer-task");
+const addTaskButton = document.querySelector(".add-task-button");
+addTaskButton.addEventListener("click", () => {
+  layerTask.classList.remove("hidden");
+});
+
+taskForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const taskName = document.getElementById("task-name").value;
+  const taskDescription = document.getElementById("task-description").value;
+
+  const newTask = {
+    id: Math.random().toString(36).substr(2, 9),
+    name: taskName,
+    description: taskDescription,
+    status: "Incomplete",
+  };
+
+  if (!projectD.tasks) {
+    projectD.tasks = [];
+  }
+
+  projectD.tasks.push(newTask);
+  updateProject(projectD);
+  layerTask.classList.add("hidden");
+});
+
+function updateProject(updatedProject) {
+  const projects = JSON.parse(localStorage.getItem("projects")) || [];
+  const updatedProjects = projects.map((project) =>
+    project.id === updatedProject.id ? updatedProject : project
+  );
+  localStorage.setItem("projects", JSON.stringify(updatedProjects));
+  localStorage.setItem("selectedProject", JSON.stringify(updatedProject));
+  window.location.reload();
+}
+document.addEventListener("click", function (event) {
+  if (
+    !taskForm.contains(event.target) &&
+    !layerTask.classList.contains("hidden")
+  ) {
+    if (!(event.target == addTaskButton)) {
+      layerTask.classList.add("hidden");
+    }
+  }
+});
+const Complete_Buttons = document.querySelectorAll(".mark-task-completed");
+Complete_Buttons.forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const taskId = button.getAttribute("data-task-id");
+    console.log(taskId);
+    const task = projectD.tasks.find((task) => task.id === taskId);
+
+    if (task) {
+      task.status = "Complete";
+      localStorage.setItem("selectedProject", JSON.stringify(projectD));
+      updateLocalStorage();
+      event.target.disabled = true;
+      window.location.reload();
+    }
+  });
+});
+
+const DeleteTaskButtons = document.querySelectorAll(".delete-task");
+DeleteTaskButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const TaskId = button.getAttribute("data-task-id");
+    projectD.tasks = projectD.tasks.filter((task) => task.id !== TaskId);
+
+    localStorage.setItem("selectedProject", JSON.stringify(projectD));
+    updateLocalStorage();
+
+    window.location.reload();
+  });
 });

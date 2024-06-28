@@ -222,6 +222,66 @@
       </div>
     </div>
 
+    <!-- Add-Tasks-form -->
+    <div
+      class="fixed w-screen h-screen backdrop-blur-md z-50 grid place-content-center layer-task hidden"
+    >
+      <div
+        class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg text-center"
+      >
+        <h2 class="text-2xl font-bold mb-6">Ajouter Une Tache</h2>
+        <form
+          class="task-form"
+          action="#"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <div class="mb-4">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2"
+              for="task-name"
+              >Nom de la Tâche</label
+            >
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="task-name"
+              type="text"
+              name="name"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2"
+              for="task-description"
+              >Description</label
+            >
+            <textarea
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="task-description"
+              name="description"
+              rows="4"
+              required
+            ></textarea>
+          </div>
+          <div class="flex items-center justify-between">
+            <button
+              class="py-1 px-5 bg-white border-2 border-black rounded-md"
+              type="submit"
+            >
+              Submit
+            </button>
+            <button
+              class="py-1 px-5 bg-black text-white rounded-md"
+              type="reset"
+            >
+              Reset
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <div class="w-10/12 mx-auto">
       <header
         class="w-10/12 mt-2 left-0 right-0 mx-auto z-40 backdrop-blur-xl bg-white bg-opacity-70 px-5 rounded-full top-2"
@@ -274,7 +334,7 @@
 
       <main class="relative z-10">
         <div
-          class="min-h-screen grid place-content-center relative project-details"
+          class="min-h-screen grid place-content-center relative project-details mt-10"
         ></div>
       </main>
       <footer class="">

@@ -4,7 +4,8 @@
   },
   "scripts": {
     "start": "node server.js",
-    "dev": "npx tailwindcss -i ./src/input.css -o ./src/output.css --watch"
+    "dev": "npx tailwindcss -i ./public/src/input.css -o ./public/src/output.css --watch"
+   
   },
   "dependencies": {
     "express": "^4.19.2"

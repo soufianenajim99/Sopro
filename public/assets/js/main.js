@@ -15,11 +15,6 @@ const modal = document.querySelector(".layer-form");
 const form = document.querySelector(".form");
 const Project_button = document.querySelectorAll(".new-project");
 document.addEventListener("click", function (event) {
-  console.log(!form.contains(event.target));
-  console.log(!modal.classList.contains("hidden"));
-  console.log(
-    !(event.target == Project_button[0] || event.target == Project_button[1])
-  );
   if (!form.contains(event.target) && !modal.classList.contains("hidden")) {
     if (
       !(event.target == Project_button[0] || event.target == Project_button[1])
@@ -74,35 +69,90 @@ class Task {
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
+  let isValid = true;
 
   const imageInput = document.getElementById("image").files[0];
   const nameInput = document.getElementById("name").value;
   const descriptionInput = document.getElementById("description").value;
   const startDateInput = document.getElementById("start-date").value;
   const endDateInput = document.getElementById("end-date").value;
-  function generateUniqueId() {
-    return Date.now() + Math.floor(Math.random() * 1000);
+
+  const descriptionError = document.getElementById("description-error");
+  if (descriptionInput.trim().length < 10) {
+    isValid = false;
+    descriptionError.textContent =
+      "Description must be at least 10 characters long.";
+    descriptionError.classList.remove("hidden");
+  } else {
+    descriptionError.classList.add("hidden");
   }
 
-  const reader = new FileReader();
-  reader.onload = function (e) {
-    const projectImage = e.target.result;
-    const project = new Project(
-      generateUniqueId(),
-      projectImage,
-      nameInput,
-      descriptionInput,
-      startDateInput,
-      endDateInput
-    );
+  const nameError = document.getElementById("name-error");
+  const nameRegex = /^[a-zA-Z0-9 ]{3,50}$/;
+  if (!nameRegex.test(nameInput)) {
+    console.log("here must");
+    isValid = false;
+    nameError.textContent =
+      "Project name must be 3-50 characters long and can only contain letters, numbers, and spaces.";
+    nameError.classList.remove("hidden");
+  } else {
+    nameError.classList.add("hidden");
+  }
 
-    let projects = JSON.parse(localStorage.getItem("projects")) || [];
-    projects.push(project);
-    localStorage.setItem("projects", JSON.stringify(projects));
+  const startDateError = document.getElementById("start-date-error");
+  const currentDate = new Date().setHours(0, 0, 0, 0);
+  if (startDateInput === "") {
+    isValid = false;
+    startDateError.textContent = "Start date is required.";
+    startDateError.classList.remove("hidden");
+  } else if (new Date(startDateInput) <= currentDate) {
+    isValid = false;
+    startDateError.textContent = "Start date must be after today's date.";
+    startDateError.classList.remove("hidden");
+  } else {
+    startDateError.classList.add("hidden");
+  }
 
-    modal.classList.add("hidden");
-  };
-  reader.readAsDataURL(imageInput);
+  const endDateError = document.getElementById("end-date-error");
+  if (endDateInput === "") {
+    isValid = false;
+    endDateError.textContent = "End date is required.";
+    endDateError.classList.remove("hidden");
+  } else if (new Date(endDateInput) <= new Date(startDateInput)) {
+    isValid = false;
+    endDateError.textContent = "End date must be after the start date.";
+    endDateError.classList.remove("hidden");
+  } else {
+    endDateError.classList.add("hidden");
+  }
+  if (isValid) {
+    console.log("here");
+    function generateUniqueId() {
+      return Date.now() + Math.floor(Math.random() * 1000);
+    }
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const projectImage = e.target.result;
+      const project = new Project(
+        generateUniqueId(),
+        projectImage,
+        nameInput,
+        descriptionInput,
+        startDateInput,
+        endDateInput
+      );
+
+      let projects = JSON.parse(localStorage.getItem("projects")) || [];
+      projects.push(project);
+      localStorage.setItem("projects", JSON.stringify(projects));
+
+      modal.classList.add("hidden");
+    };
+    reader.readAsDataURL(imageInput);
+  } else {
+    event.preventDefault();
+  }
 });
 
 const projectsContainer = document.querySelector(".projects");
@@ -138,7 +188,9 @@ function appendProjectCard(project) {
                   <h2 class="card-title text-black font-semibold text-2xl">
                   ${project.name}
                   </h2>
-                  <p class="font-normal text-xl">Tasks : 54</p>
+                  <p class="font-normal text-xl">Tasks : ${
+                    project.tasks.length
+                  }</p>
                 </div>
 
                 <p class="text-gray-500 mt-2">

@@ -41,6 +41,7 @@
               type="file"
               name="image"
             />
+            <p id="image-error" class="text-rose-500"></p>
           </div>
           <div class="mb-4">
             <label
@@ -54,8 +55,8 @@
               id="name"
               type="text"
               name="name"
-              required
             />
+            <p id="name-error" class="text-rose-500 hidden"></p>
           </div>
           <div class="mb-4">
             <label
@@ -69,8 +70,8 @@
               id="description"
               name="description"
               rows="4"
-              required
             ></textarea>
+            <p id="description-error" class="text-rose-500 hidden"></p>
           </div>
           <div class="mb-4">
             <label
@@ -84,8 +85,8 @@
               id="start-date"
               type="date"
               name="start_date"
-              required
             />
+            <p id="start-date-error" class="text-rose-500 hidden"></p>
           </div>
           <div class="mb-4">
             <label
@@ -99,8 +100,8 @@
               id="end-date"
               type="date"
               name="end_date"
-              required
             />
+            <p id="end-date-error" class="text-rose-500 hidden"></p>
           </div>
           <div class="flex items-center justify-between">
             <button
